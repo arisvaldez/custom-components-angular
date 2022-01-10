@@ -1,20 +1,19 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-dropzone',
+  templateUrl: './dropzone.component.html',
+  styleUrls: ['./dropzone.component.scss'],
 })
-export class AppComponent {
-  title = 'custom-components-angular';
-
+export class DropzoneComponent {
   @ViewChild('fileDropRef', { static: false })
   fileDropEl!: ElementRef;
 
   files: any[] = [];
 
   fileBrowseHandler(event: any) {
-    console.log(event);
+    const item = event.target.files[0];
+    this.files.push(item);
   }
 
   onFileDropped(event: any) {
@@ -23,15 +22,13 @@ export class AppComponent {
 
   prepareFileList(files: Array<any>) {
     for (const item of files) {
-      item.progress = 0;
       this.files.push(item);
     }
     this.fileDropEl.nativeElement.value = '';
-    
   }
 
-  deleteFile(){
-
+  deleteFile(index: number) {
+    this.files.splice(index, 1);
   }
 
   formatBytes(bytes: number, decimals: number = 2) {
@@ -47,6 +44,6 @@ export class AppComponent {
       (bytes / Math.pow(kilo, value)).toFixed(decimal)
     );
 
-    return `${finalValue} ${multiples[value]}`
+    return `${finalValue} ${multiples[value]}`;
   }
 }

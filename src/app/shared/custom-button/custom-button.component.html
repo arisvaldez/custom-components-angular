@@ -1,0 +1,17 @@
+<!-- <div style="text-align: center">
+  <button
+    mat-raised-button
+    color="primary"
+   
+    [disabled]="loading"
+    (click)="save()"
+  >
+    Save
+    <div class="feedback-container"  [class.spinner]="loading"></div>
+  </button>
+</div>
+ -->
+<button class="button-gradient" (click)="save()">
+  <span style="margin-right: 10px;"> Aceptar</span>
+  <fa-icon size="lg" [icon]="faIcon" [spin]="spin"></fa-icon>
+</button>
