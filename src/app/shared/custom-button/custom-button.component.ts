@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 interface BtnConfiguration {
-  icon: IconDefinition;
+  icon: IconDefinition | undefined;
   spin: boolean;
 }
 
@@ -17,7 +17,7 @@ interface BtnConfiguration {
   styleUrls: ['./custom-button.component.scss'],
 })
 export class CustomButtonComponent {
-  faIcon: IconDefinition = faCaretRight;
+  faIcon: IconDefinition | undefined;
   spin: boolean = false;
 
   @Output()
@@ -31,7 +31,7 @@ export class CustomButtonComponent {
     setTimeout(() => {
       this.setIcon = { icon: faCheckCircle, spin: false };
       setTimeout(() => {
-        this.setIcon = { icon: faCaretRight, spin: false };
+        this.setIcon = { icon: undefined, spin: false };
       }, 2500);
     }, 2500);
   }
